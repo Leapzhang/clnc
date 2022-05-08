@@ -4,8 +4,8 @@ install_dir='/data/clnc'
 rm -rf "$install_dir"
 mkdir "$install_dir"
 cd "$install_dir"
-curl -o -k clnc.zip https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/clnc1.0.2_4gwifi.zip || exec echo '下载clnc脚本失败'
-curl -O -k https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/busybox || exec echo '下载busybox程序失败'
+curl -o clnc.zip https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/clnc1.0.2_4gwifi.zip -k || exec echo '下载clnc脚本失败'
+curl -O https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/busybox -k || exec echo '下载busybox程序失败'
 chmod 0777 busybox
 ./busybox unzip clnc.zip
 chmod -R 0777 "$install_dir"
@@ -34,7 +34,7 @@ echo "clnc脚本已安装在/data/clnc，启动执行/data/clnc/start.sh"
 echo "是否设置开机自启[y/n]"
 read isAutoStart
 [ "$isAutoStart" = 'y' -o "$isAutoStart" = 'Y' ] && {
-	curl -O https://gitee.com/leapzhang/clnc/raw/master/clncScript/autoStart.sh || exec echo '下载自启脚本失败'
+	curl -O https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/autoStart.sh -k || exec echo '下载自启脚本失败'
 	sh autoStart.sh | grep -q '添加' || sh autoStart.sh
 	echo "$install_dir/start.sh" >/data/ZQ/clnc.sh
 	echo '已设置脚本开机自启'
