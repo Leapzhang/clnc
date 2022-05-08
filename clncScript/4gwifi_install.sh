@@ -4,8 +4,8 @@ install_dir='/data/clnc'
 rm -rf "$install_dir"
 mkdir "$install_dir"
 cd "$install_dir"
-curl -o clnc.zip https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/clnc1.0.2_4gwifi.zip || exec echo '下载clnc脚本失败'
-curl -O https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/busybox || exec echo '下载busybox程序失败'
+curl -o -k clnc.zip https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/clnc1.0.2_4gwifi.zip || exec echo '下载clnc脚本失败'
+curl -O -k https://ghproxy.com/https://raw.githubusercontent.com/Leapzhang/clnc/main/clncScript/busybox || exec echo '下载busybox程序失败'
 chmod 0777 busybox
 ./busybox unzip clnc.zip
 chmod -R 0777 "$install_dir"
